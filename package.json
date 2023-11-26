@@ -1,11 +1,13 @@
 {
   "name": "audio-tools-api",
   "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
+  "dependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^8.54.0",
+    "express": "^4.18.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "jest": "^29.7.0",
+    "multer": "^1.4.5-lts.1"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  "type": "module"
 }
