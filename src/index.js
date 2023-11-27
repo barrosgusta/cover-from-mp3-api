@@ -10,17 +10,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination: (req, file, cb) => {
         cb(null, './src/songs');
     },
-    filename: function (req, file, cb) {
+    filename: (req, file, cb) => {
         cb(null, Date.now() + "_" + file.originalname.replace(/\s/g, '').replace(/.mp3/g, '').toLowerCase() + '.mp3');
     }
 });
 
 var upload = multer({ storage: storage });
 
-app.post('/cover-from-mp3', upload.single("audio"), function (req, res) {
+app.post('/cover-from-mp3', upload.single("audio"), (req, res) => {
     console.log(req.file);
     if (!req.file) {
         res.status(400).send('No file uploaded.');
@@ -31,14 +31,15 @@ app.post('/cover-from-mp3', upload.single("audio"), function (req, res) {
         .input(req.file.path)
         .noAudio()
         .output('output.jpg')
-        .on('end', function () {
-        res.download('output.jpg');
-    })
-        .on('error', function (err) {
-        console.log('An error occurred: ' + err.message);
-        res.status(500).send(err.message);
-    })
+        .on('end', () => {
+            res.download('output.jpg');
+        })
+        .on('error', (err) => {
+            console.log('An error occurred: ' + err.message);
+            res.status(500).send(err.message);
+        })
         .run();
 });
-var PORT = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running on port " + PORT));
