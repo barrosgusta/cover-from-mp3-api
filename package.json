@@ -1,13 +1,30 @@
 {
   "name": "audio-tools-api",
-  "module": "index.ts",
+  "version": "1.0.0",
+  "description": "## Do not use with Bun! It will not work (Multer lib is incompatible with Bun's storage).",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "start:dev": "tsx watch src/server.ts",
+    "build": "tsup src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.1",
+    "typescript": "^5.3.2",
+    "vitest": "^0.34.6"
+  },
   "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/fluent-ffmpeg": "^2.1.24",
+    "@types/multer": "^1.4.11",
     "cors": "^2.8.5",
-    "eslint": "^8.54.0",
     "express": "^4.18.2",
     "fluent-ffmpeg": "^2.1.2",
-    "jest": "^29.7.0",
     "multer": "^1.4.5-lts.1"
-  },
-  "type": "module"
+  }
 }
